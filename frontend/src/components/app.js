@@ -1,13 +1,17 @@
 import React from "react";
-import { AuthRoute, ProtectedRoute } from "../util/route_util";
-import { Switch } from "react-router-dom";
-
-import MainPage from "./main/main_page";
+// import { AuthRoute, ProtectedRoute } from "../util/route_util";
+import { Route, Switch } from "react-router-dom";
+import MainPageContainer from "./main/main_page_container";
 
 const App = () => (
-  <Switch>
-    <AuthRoute exact path="/" component={MainPage} />
-  </Switch>
+  <div id="app-container">
+    <Switch>
+      <Route exact path="/" component={MainPageContainer} />
+    </Switch>
+    <footer id="footer">
+      <div> Copyright &copy; 2020 Jesse Colligan</div>
+    </footer>
+  </div>
 );
 
 export default App;
