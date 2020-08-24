@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Button from "react-bootstrap/Button";
+import Carousel from "react-bootstrap/Carousel";
 
 const MainPage = (props) => {
   const [email, setEmail] = useState("")
@@ -20,6 +21,11 @@ const MainPage = (props) => {
     setScore(score + points)
   }
 
+  const questionList = props.questions.map((question,idx) => {
+    return (<li key={idx}>
+      {question.question}
+    </li>)
+  })
 
   return (
     <div id="main-page">
@@ -52,12 +58,17 @@ const MainPage = (props) => {
 
       <ul>
         <li>questions will appear here</li>
-        {props.questions ? props.questions[0] : "no questions here!"}
+        {/* {questionList} */}
       </ul>
 
-      <button
-        onClick={() => props.fetchQuestions()}
-      >questions</button>
+      <Carousel>
+        <Carousel.Item>
+          <Carousel.Caption>
+            <h3>First slide label</h3>
+            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+          </Carousel.Caption>
+        </Carousel.Item>
+      </Carousel>
     </div>
   );
 }

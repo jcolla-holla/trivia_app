@@ -5,7 +5,7 @@ import MainPage from "./main_page.jsx";
 
 const mapStateToProps = (state) => ({
   errors: state.errors.session, // array
-  questions: state.questions // object
+  questions: state.questions ? state.questions : [] // array
 });
 
 const mapDispatchToProps = (dispatch) => ({
