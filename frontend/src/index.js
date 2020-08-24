@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Create a preconfigured state we can immediately add to our store
     const preloadedState = {
-      session: { isAuthenticated: true, user: decodedUser },
+      session: { isAuthenticated: false, user: decodedUser },
     };
 
     store = configureStore(preloadedState);
@@ -37,9 +37,6 @@ document.addEventListener("DOMContentLoaded", () => {
     // If this is a first time user, start with an empty store
     store = configureStore({});
   }
-
-  // this here for testing/debugging the store
-  window.store = store
 
   // Render our root component and pass in the store as a prop
   const root = document.getElementById("root");

@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import Button from "react-bootstrap/Button";
-import Carousel from "react-bootstrap/Carousel";
+import Questions from "../questions/questions"
 
 const MainPage = (props) => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [score, setScore] = useState(0)
+  // const [isDemoUser, setIsDemoUser] = useState(false)
 
   // ComponentDidMount effect - fetch 10 questions immediately upon mounting
   useEffect(() => {
@@ -21,11 +22,13 @@ const MainPage = (props) => {
     setScore(score + points)
   }
 
-  const questionList = props.questions.map((question,idx) => {
-    return (<li key={idx}>
-      {question.question}
-    </li>)
-  })
+  const handleDemo = (e) => {
+
+    e.preventDefault();
+    props.login({ email: "jesse.m.colligan@gmail.com", password: "password" });
+    // setIsDemoUser(true)
+  }
+
 
   return (
     <div id="main-page">
@@ -55,20 +58,18 @@ const MainPage = (props) => {
           size="lg"
         />
       </form>
+      <Button
+        as="input"
+        type="button"
+        onClick={(e) => handleDemo(e)}
+        value="Demo"
+        variant="primary"
+        size="lg"
+      />
 
-      <ul>
-        <li>questions will appear here</li>
-        {/* {questionList} */}
-      </ul>
-
-      <Carousel>
-        <Carousel.Item>
-          <Carousel.Caption>
-            <h3>First slide label</h3>
-            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-          </Carousel.Caption>
-        </Carousel.Item>
-      </Carousel>
+      {props.isAuthenticated &&
+        <Questions questions={props.questions} score={score} updateScore={updateScore} />
+      }
     </div>
   );
 }
