@@ -51,7 +51,7 @@ const QuestionCard = (props) => {
         }    
 
         if (props.score + scoreAdjustment === 0) {
-          props.setGameOver(true);
+            props.setGameOver(true);
         }
     };
                             

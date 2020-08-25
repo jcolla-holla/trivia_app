@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Button from "react-bootstrap/Button";
 import Questions from "../Questions/Questions"
-import GameOver from "../GameOver/GameOver"
+import GameOver from "../GameOver/GameOver_container.js"
 
 const MainPage = (props) => {
   const [email, setEmail] = useState("")
@@ -72,7 +72,7 @@ const MainPage = (props) => {
         size="lg"
       />
 
-      {((isDemoUser || props.isAuthenticated) && !gameOver) && (
+      {(isDemoUser || props.isAuthenticated) && gameOver && (
         <Questions
           questions={props.questions}
           score={score}
@@ -83,9 +83,13 @@ const MainPage = (props) => {
         />
       )}
 
-      {gameOver && 
-        <GameOver isDemoUser={isDemoUser}/>
-      }
+      {!gameOver && (
+        <GameOver
+          isDemoUser={isDemoUser}
+          score={score}
+          questionsSubmitted={questionsSubmitted}
+        />
+      )}
     </div>
   );
 }
