@@ -6,6 +6,7 @@ const MainPage = (props) => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [score, setScore] = useState(0)
+  const [questionsSubmitted, setQuestionsSubmitted] = useState(0)
   // const [isDemoUser, setIsDemoUser] = useState(false)
 
   // ComponentDidMount effect - fetch 10 questions immediately upon mounting
@@ -20,6 +21,10 @@ const MainPage = (props) => {
 
   const updateScore = (points) => {
     setScore(score + points)
+  }
+
+  const incrementQuestionsSubmitted = () => {
+    setQuestionsSubmitted(questionsSubmitted + 1)
   }
 
   const handleDemo = (e) => {
@@ -67,9 +72,15 @@ const MainPage = (props) => {
         size="lg"
       />
 
-      {props.isAuthenticated &&
-        <Questions questions={props.questions} score={score} updateScore={updateScore} />
-      }
+      {props.isAuthenticated && (
+        <Questions
+          questions={props.questions}
+          score={score}
+          questionsSubmitted={questionsSubmitted}
+          updateScore={updateScore}
+          incrementQuestionsSubmitted={incrementQuestionsSubmitted}
+        />
+      )}
     </div>
   );
 }

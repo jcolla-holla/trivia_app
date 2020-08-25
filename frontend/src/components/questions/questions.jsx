@@ -3,14 +3,21 @@ import QuestionCard from '../QuestionCard/QuestionCard'
 
 const Questions = (props) => {
     const questionList = props.questions.map((question,idx) => {
-        return (<QuestionCard key={idx} question={question} updateScore={props.updateScore}/>)
+        return (
+          <QuestionCard
+            key={idx}
+            question={question}
+            updateScore={props.updateScore}
+            incrementQuestionsSubmitted={props.incrementQuestionsSubmitted}
+          />
+        );
     })
 
     return (
       <div>
-        Questions rendered
         <div>
           Score: {props.score}
+          Questions Remaining: {10 - props.questionsSubmitted}
         </div>
         <div>{questionList}</div>
       </div>

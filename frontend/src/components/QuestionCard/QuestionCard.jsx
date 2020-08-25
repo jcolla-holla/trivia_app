@@ -1,7 +1,12 @@
-import React, {useRef, useState, useEffect} from "react";
+import React, {useRef, useState} from "react";
 import { mergeAnswers } from "../../util/general_util";
+import Card from "react-bootstrap/Card";
+import ListGroup from "react-bootstrap/ListGroup";
+import Button from "react-bootstrap/Button";
 
 const QuestionCard = (props) => {
+    const [selected, setSelected] = useState()
+    const [submitted, setSubmitted] = useState(false)
     const answersArr = useRef(
       mergeAnswers(
         props.question.correct_answer,
@@ -11,12 +16,19 @@ const QuestionCard = (props) => {
 
     const answersRadio = answersArr.current ? (
       answersArr.current.map((option, idx) => {
-
         return (
-          <label>
-            {option}
-            <input key={idx} type="radio" value={option}></input>
-            <br></br>
+          <label key={idx}>
+            {selected}
+            <ListGroup.Item>
+              <input
+                key={idx}
+                type="radio"
+                name="answer"
+                onClick={() => setSelected(option)}
+                disabled={submitted}
+              ></input>
+              {option}
+            </ListGroup.Item>
           </label>
         );
       })
@@ -25,19 +37,42 @@ const QuestionCard = (props) => {
     ); 
 
 
-        const increaseScore = (e) => {
-          e.preventDefault();
-          props.updateScore(2);
-        };
+    // const adjustScore = (e) => {
+    //     // update here with actual scroe
+    //     e.preventDefault();
+    //     props.updateScore(2);
+    // };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    props.incrementQuestionsSubmitted();
+    setSubmitted(true);
+    
+    // is correct? - update score
+    // make all questions not answerable
+    // game is over? = update 
+  };
     
     return (
       <div id="question-card">
-        <button onClick={increaseScore} value="increase score"></button>
-        Question {props.id}
-        {props.question.question}
-        {props.question.difficulty}
-        {props.question.type}
-        {answersRadio}
+        <Card style={{ width: "50rem" }}>
+          <Card.Body>
+            <Card.Title>{props.question.question}</Card.Title>
+            <Card.Text>Difficulty: {props.question.difficulty}</Card.Text>
+            <Card.Text>Category: {props.question.category}</Card.Text>
+          </Card.Body>
+          <form onSubmit={handleSubmit}> 
+            <ListGroup className="list-group-flush">{answersRadio}</ListGroup>
+            <Button
+              as="input"
+              type="submit"
+              value="Submit"
+              variant="primary"
+              size="lg"
+              disabled={submitted}
+            />
+          </form>
+        </Card>
       </div>
     );
 }
