@@ -8,7 +8,10 @@ const Questions = (props) => {
             key={idx}
             question={question}
             updateScore={props.updateScore}
+            questionsSubmitted={props.questionsSubmitted}
             incrementQuestionsSubmitted={props.incrementQuestionsSubmitted}
+            setGameOver={props.setGameOver}
+            score={props.score}
           />
         );
     })
@@ -17,9 +20,11 @@ const Questions = (props) => {
       <div>
         <div>
           Score: {props.score}
-          Questions Remaining: {10 - props.questionsSubmitted}
+          Questions Submitted: {props.questionsSubmitted}
         </div>
-        <div>{questionList}</div>
+        <div>
+          {questionList.length === 0 ? <p>Loading Questions...</p> : questionList}
+        </div>
       </div>
     );
 }

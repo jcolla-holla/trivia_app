@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from "react";
 import Button from "react-bootstrap/Button";
-import Questions from "../questions/questions"
+import Questions from "../Questions/Questions"
+import GameOver from "../GameOver/GameOver"
 
 const MainPage = (props) => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
-  const [score, setScore] = useState(0)
+  const [score, setScore] = useState(24)
   const [questionsSubmitted, setQuestionsSubmitted] = useState(0)
-  // const [isDemoUser, setIsDemoUser] = useState(false)
+  const [gameOver, setGameOver] = useState(false);
+  const [isDemoUser, setIsDemoUser] = useState(false)
 
   // ComponentDidMount effect - fetch 10 questions immediately upon mounting
   useEffect(() => {
@@ -19,19 +21,17 @@ const MainPage = (props) => {
     props.login({email: email, password: password});
   }
 
-  const updateScore = (points) => {
-    setScore(score + points)
-  }
-
   const incrementQuestionsSubmitted = () => {
     setQuestionsSubmitted(questionsSubmitted + 1)
   }
 
-  const handleDemo = (e) => {
+  const updateScore = (points) => {
+    setScore(score + points)
+  }
 
+  const handleDemo = (e) => {
     e.preventDefault();
-    props.login({ email: "jesse.m.colligan@gmail.com", password: "password" });
-    // setIsDemoUser(true)
+    setIsDemoUser(true)
   }
 
 
@@ -72,15 +72,20 @@ const MainPage = (props) => {
         size="lg"
       />
 
-      {props.isAuthenticated && (
+      {((isDemoUser || props.isAuthenticated) && !gameOver) && (
         <Questions
           questions={props.questions}
           score={score}
           questionsSubmitted={questionsSubmitted}
           updateScore={updateScore}
           incrementQuestionsSubmitted={incrementQuestionsSubmitted}
+          setGameOver={setGameOver}
         />
       )}
+
+      {gameOver && 
+        <GameOver isDemoUser={isDemoUser}/>
+      }
     </div>
   );
 }

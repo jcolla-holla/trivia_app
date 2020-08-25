@@ -13,12 +13,58 @@ const QuestionCard = (props) => {
         props.question.incorrect_answers
       )
     );
+    
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        props.incrementQuestionsSubmitted();
+        setSubmitted(true);
+        
+        // update score based on question difficulty and if correct
+        const difficulty = props.question.difficulty;
+        let scoreAdjustment
+        if (selected === props.question.correct_answer) {
+            if(difficulty === "easy") {
+                scoreAdjustment = -2
+            }
+            else if (difficulty === "medium") {
+                scoreAdjustment = -4
+            }
+            else if(difficulty === "hard") {
+                scoreAdjustment = -8
+            }
+        } else {
+            if(difficulty === "easy") {
+                scoreAdjustment = 2
+            }
+            else if (difficulty === "medium") {
+                scoreAdjustment = 4
+            }
+            else if(difficulty === "hard") {
+                scoreAdjustment = 8
+            }
+        }
+
+        props.updateScore(scoreAdjustment)
+
+        if (props.questionsSubmitted === 9 ) {
+            props.setGameOver(true);
+        }    
+
+        if (props.score + scoreAdjustment === 0) {
+          props.setGameOver(true);
+        }
+    };
+                            
+    const answerClass = (option) => {
+        if (submitted) {
+            return option === props.question.correct_answer ? "correct" : "wrong";
+        }
+    }
 
     const answersRadio = answersArr.current ? (
-      answersArr.current.map((option, idx) => {
+        answersArr.current.map((option, idx) => {
         return (
-          <label key={idx}>
-            {selected}
+          <label key={idx} className={answerClass(option)}>
             <ListGroup.Item>
               <input
                 key={idx}
@@ -31,28 +77,10 @@ const QuestionCard = (props) => {
             </ListGroup.Item>
           </label>
         );
-      })
+        })
     ) : (
-      <div>Loading Answers...</div>
+        <div>Loading Answers...</div>
     ); 
-
-
-    // const adjustScore = (e) => {
-    //     // update here with actual scroe
-    //     e.preventDefault();
-    //     props.updateScore(2);
-    // };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    props.incrementQuestionsSubmitted();
-    setSubmitted(true);
-    
-    // is correct? - update score
-    // make all questions not answerable
-    // game is over? = update 
-  };
-    
     return (
       <div id="question-card">
         <Card style={{ width: "50rem" }}>
@@ -61,7 +89,7 @@ const QuestionCard = (props) => {
             <Card.Text>Difficulty: {props.question.difficulty}</Card.Text>
             <Card.Text>Category: {props.question.category}</Card.Text>
           </Card.Body>
-          <form onSubmit={handleSubmit}> 
+          <form onSubmit={handleSubmit}>
             <ListGroup className="list-group-flush">{answersRadio}</ListGroup>
             <Button
               as="input"
@@ -69,7 +97,7 @@ const QuestionCard = (props) => {
               value="Submit"
               variant="primary"
               size="lg"
-              disabled={submitted}
+              disabled={submitted ? submitted : !selected}
             />
           </form>
         </Card>
