@@ -1,11 +1,18 @@
 import { connect } from "react-redux";
 import { login, signup, clearErrors } from "../../actions/session_actions";
+import {
+  getTopTenScores,
+  createScore,
+  getScores,
+} from "../../actions/score_actions";
 import { fetchQuestions } from "../../actions/questions_actions"
 import GameOver from "./GameOver.jsx";
 
 const mapStateToProps = (state) => ({
-  errors: state.errors.session, // array
-  isAuthenticated: state.session.isAuthenticated,
+    errors: state.errors.session, // array
+    isAuthenticated: state.session.isAuthenticated,
+    topTen: state.scores.topTen ? state.scores.topTen : [], //array
+    allScores: state.scores.allScores,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -13,6 +20,9 @@ const mapDispatchToProps = (dispatch) => ({
   login: (user) => dispatch(login(user)),
   clearErrors: () => dispatch(clearErrors()),
   fetchQuestions: () => dispatch(fetchQuestions()),
+  getTopTenScores: () => dispatch(getTopTenScores()),
+  createScore: (score) => dispatch(createScore(score)),
+  getScores: () => dispatch(getScores()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(GameOver);

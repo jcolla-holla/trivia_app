@@ -1,6 +1,7 @@
 import axios from "axios";
 
 export const createScore = (scoreData) => {
+    
     return axios.post("/api/scores/", scoreData);
 };
 

@@ -31,7 +31,9 @@ const MainPage = (props) => {
 
   const handleDemo = (e) => {
     e.preventDefault();
-    setIsDemoUser(true)
+    props.login({ email: "jesse.m.colligan@gmail.com", password: "password" });
+
+    // setIsDemoUser(true)
   }
 
 

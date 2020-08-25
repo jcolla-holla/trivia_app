@@ -10,13 +10,10 @@ const Score = require("../../models/Score");
 
 // create new Score - protected endpoint
 router.post("/",passport.authenticate("jwt", { session: false }), (req, res) => {
-    // const { errors, isValid } = validateTweetInput(req.body);
-
-    // if (!isValid) {
-    //   return res.status(400).json(errors);
-    // }
 
     // req.body.userId may not be quite right
+
+    
     const newScore = new Score({
       score: req.body.score,
       userId: req.body.userId,
