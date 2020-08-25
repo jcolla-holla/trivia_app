@@ -7,8 +7,10 @@ const GameOver = (props) => {
 
     // const leaderBoard 
 
-    // create a few scores of fake data
-    // 
+    // scores actions
+    // scores reducer
+    // create a few scores of from browser console
+    // logic to replace top 10 scores if user is saved
 
     return (
       <div id="game-over">
