@@ -4,6 +4,8 @@
 
 // Import all other styles here and then import this file in index.js
 @import "./components/login-modal.scss";
+@import "./components/NavBar.scss";
+@import "./components/footer.scss";
 
 html,
 body,
@@ -20,4 +22,27 @@ body,
   font-weight: normal;
   line-height: 20px;
   margin: 0;
+
+
+}
+
+
+#app-container {
+  position: relative;
+    background-image:
+    linear-gradient(
+      white, $primary
+    );
+  min-height: 100vh;
+}
+
+#main-page {
+  margin-bottom: 2.5rem;    /* Footer height */
+}
+
+#footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 2.5rem;            /* Footer height */
 }

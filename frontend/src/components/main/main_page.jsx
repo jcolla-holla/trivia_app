@@ -51,8 +51,6 @@ const MainPage = (props) => {
 
   return (
     <div id="main-page">
-      <h1>Welcome to TrustLayer Trivia</h1>
-
       {(isDemoUser || props.isAuthenticated) && !gameOver && (
         <Questions
           questions={props.questions}
@@ -97,28 +95,31 @@ const MainPage = (props) => {
                   onChange={(e) => setPassword(e.currentTarget.value)}
                 ></input>
               </label>
-              <Button
-                as="input"
-                type="submit"
-                value="Login"
-                variant="primary"
-                size="lg"
-                disabled={email.length > 0 ? password.length === 0 : true}
-              />
-            </form>
-            <Button
-              as="input"
-              type="button"
-              onClick={(e) => handleDemo(e)}
-              value="Continue as Guest"
-              variant="secondary"
-              size="lg"
-              disabled={email.length > 0 ? password.length === 0 : true}
-            />
-          </Modal.Body>
+              <div className="buttons-row">
+                <Button
+                  as="input"
+                  type="submit"
+                  value="Login"
+                  variant="primary"
+                  size="lg"
+                  disabled={email.length > 0 ? password.length === 0 : true}
+                />
 
+                <Button
+                  as="input"
+                  type="button"
+                  onClick={(e) => handleDemo(e)}
+                  value="Continue as Guest"
+                  variant="secondary"
+                  size="lg"
+                />
+              </div>
+            </form>
+          </Modal.Body>
           <Modal.Footer>
-            As a Guest, create an account later to save your score.
+            <div className="modal-footer-info">
+              <span>As a Guest, you can create an account later to save your score.</span>
+            </div>
           </Modal.Footer>
         </Modal.Dialog>
       )}
@@ -161,7 +162,11 @@ const MainPage = (props) => {
                 value="Save Score and Create User"
                 variant="primary"
                 size="lg"
-                disabled={(email.length > 0  && handle.length > 0) ? password.length === 0 : true}
+                disabled={
+                  email.length > 0 && handle.length > 0
+                    ? password.length === 0
+                    : true
+                }
               />
             </form>
           </Modal.Body>

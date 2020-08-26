@@ -1,6 +1,32 @@
-#login-modal {
 
-    .modal-title {
-        // color: $secondary;
+// all modals
+.modal-title {
+    font-weight: 500
+}
+
+.modal-body {
+    label {
+        padding: 10px;
+        input {
+            margin-left: 6px;
+        }
     }
+
+    .buttons-row {
+        margin-top: 20px;
+        margin-bottom: 20px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .btn {
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+}
+
+.modal-footer-info {
+    display: flex;
+    justify-content: center;
+    width: 100%;
 }
