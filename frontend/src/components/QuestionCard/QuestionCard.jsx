@@ -87,7 +87,7 @@ const QuestionCard = (props) => {
       <div id="question-card">
         <Card style={{ width: "50rem" }}>
           <Card.Body>
-            <Card.Title>{ReactHtmlParser(props.question.question)}</Card.Title>
+            <Card.Title>{props.questionNumber + ". " + ReactHtmlParser(props.question.question)}</Card.Title>
             <Card.Text>Difficulty: {props.question.difficulty}</Card.Text>
             <Card.Text>Category: {props.question.category}</Card.Text>
           </Card.Body>

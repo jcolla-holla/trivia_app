@@ -6,16 +6,16 @@ import Carousel from "react-bootstrap/Carousel";
 const Questions = (props) => {
     const questionList = props.questions.map((question,idx) => {
         return (
-          <Carousel.Item>
-            <QuestionCard
-              key={idx}
-              question={question}
-              updateScore={props.updateScore}
-              questionsSubmitted={props.questionsSubmitted}
-              incrementQuestionsSubmitted={props.incrementQuestionsSubmitted}
-              setGameOver={props.setGameOver}
-              score={props.score}
-            />
+          <Carousel.Item key={idx}>
+              <QuestionCard
+                questionNumber={(idx + 1).toString()}
+                question={question}
+                updateScore={props.updateScore}
+                questionsSubmitted={props.questionsSubmitted}
+                incrementQuestionsSubmitted={props.incrementQuestionsSubmitted}
+                setGameOver={props.setGameOver}
+                score={props.score}
+              />
           </Carousel.Item>
         );
     })
@@ -38,7 +38,7 @@ const Questions = (props) => {
           {questionList.length === 0 ? (
             <p>Loading Questions...</p>
           ) : (
-            <Carousel fade interval={null} touch>
+            <Carousel fade interval={null} touch indicators={false}>
               {questionList}
             </Carousel>
           )}
