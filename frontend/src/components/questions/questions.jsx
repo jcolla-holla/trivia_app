@@ -24,7 +24,7 @@ const Questions = (props) => {
       <div id="questions">
         {props.questionsSubmitted === 9 && (
           <Alert variant="warning" dismissable="true">
-            <strong>One question left!</strong> Submit your answer to see your
+            <strong>One question left!</strong> {" "} Submit your last answer to see your
             final score.
           </Alert>
         )}
@@ -38,7 +38,7 @@ const Questions = (props) => {
           {questionList.length === 0 ? (
             <p>Loading Questions...</p>
           ) : (
-            <Carousel fade interval={null} touch indicators={false}>
+            <Carousel fade keyboard interval={null} touch indicators={false}>
               {questionList}
             </Carousel>
           )}

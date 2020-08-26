@@ -1,7 +1,6 @@
 import React, {useRef, useState} from "react";
 import { mergeAnswers } from "../../util/general_util";
 import Card from "react-bootstrap/Card";
-import ListGroup from "react-bootstrap/ListGroup";
 import Button from "react-bootstrap/Button";
 import ReactHtmlParser from "react-html-parser";
 
@@ -67,16 +66,14 @@ const QuestionCard = (props) => {
         answersArr.current.map((option, idx) => {
         return (
           <label key={idx} className={answerClass(option)}>
-            <ListGroup.Item>
-              <input
-                key={idx}
-                type="radio"
-                name="answer"
-                onClick={() => setSelected(option)}
-                disabled={submitted}
-              ></input>
-              {ReactHtmlParser(option)}
-            </ListGroup.Item>
+            <input
+              key={idx}
+              type="radio"
+              name="answer"
+              onClick={() => setSelected(option)}
+              disabled={submitted}
+            ></input>
+            <span>{ReactHtmlParser(option)}</span>
           </label>
         );
         })
@@ -84,23 +81,45 @@ const QuestionCard = (props) => {
         <div>Loading Answers...</div>
     ); 
     return (
-      <div id="question-card">
+      <div className="question-card">
         <Card style={{ width: "50rem" }}>
           <Card.Body>
-            <Card.Title>{props.questionNumber + ". " + ReactHtmlParser(props.question.question)}</Card.Title>
-            <Card.Text>Difficulty: {props.question.difficulty}</Card.Text>
-            <Card.Text>Category: {props.question.category}</Card.Text>
+            <Card.Title className="question-title">
+              {props.questionNumber +
+                ". " +
+                ReactHtmlParser(props.question.question)}
+            </Card.Title>
           </Card.Body>
           <form onSubmit={handleSubmit}>
-            <ListGroup className="list-group-flush">{answersRadio}</ListGroup>
-            <Button
-              as="input"
-              type="submit"
-              value="Submit"
-              variant="primary"
-              size="lg"
-              disabled={submitted ? submitted : !selected}
-            />
+            <div className="radio-parent">{answersRadio}</div>
+            
+            <Card.Body className="feedback-parent">
+              {submitted && selected === props.question.correct_answer && (
+                <div className="feedback">Correct! Try another.</div>
+              )}
+              {submitted && selected !== props.question.correct_answer && (
+                <div className="feedback">Wrong. Try another.</div>
+              )}
+            </Card.Body>
+
+            <Card.Footer>
+              <div className="question-specs">
+                <div className={props.question.difficulty}>
+                  {props.question.difficulty[0].toUpperCase() +
+                    props.question.difficulty.slice(1)}
+                </div>
+                <div className="category"> {props.question.category}</div>
+              </div>
+
+              <Button
+                as="input"
+                type="submit"
+                value="Submit"
+                variant="primary"
+                size="lg"
+                disabled={submitted ? submitted : !selected}
+              />
+            </Card.Footer>
           </form>
         </Card>
       </div>
