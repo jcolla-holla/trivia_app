@@ -33,8 +33,10 @@ router.get("/topTen", (req, res) => {
 
 // update score -- used only for updating the topTen key when a new topTen score is saved
 router.put("/:id", (req, res) => {
-  User.findById(req.params.id)
-    .then((user) => res.json(user))
+  let score = Score.findById(req.params.id)
+  score.topTen = req.params.topTen
+  score.save()
+    .then((score) => res.json(score))
     .catch((err) => res.status(400).json(err));
 });
 

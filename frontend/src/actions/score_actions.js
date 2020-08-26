@@ -37,8 +37,13 @@ export const receiveScore = (score) => {
 }
 
 export const createScore = (data) => (dispatch) => {
-  
   return APIUtil.createScore(data)
+    .then((score) => dispatch(receiveScore(score)))
+    .catch((err) => console.log(err));
+};
+
+export const updateScore = (data) => (dispatch) => {
+  return APIUtil.updateScore(data)
     .then((score) => dispatch(receiveScore(score)))
     .catch((err) => console.log(err));
 };

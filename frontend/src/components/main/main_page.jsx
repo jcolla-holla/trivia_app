@@ -43,10 +43,9 @@ const MainPage = (props) => {
   }
 
   const startNewRound = () => {
-    props.fetchQuestions();
     setScore(24)
     setGameOver(false)
-    questionsSubmitted(0)
+    setQuestionsSubmitted(0)
   }
 
 
@@ -122,7 +121,7 @@ const MainPage = (props) => {
         </Modal.Dialog>
       )}
 
-      {isDemoUser && !gameOver && (
+      {isDemoUser && gameOver && (
         <Modal.Dialog>
           <Modal.Header>
             <Modal.Title>Save Your Score</Modal.Title>
