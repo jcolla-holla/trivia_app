@@ -37,11 +37,10 @@ const GameOver = (props) => {
     return (
       <div id="game-over">
         <h1>Game Over!!</h1>
-        <div>
-          Final Score: {props.score}
-        </div>
+        <div>Final Score: {props.score}</div>
         {createAccount}
         <button onClick={() => saveScore()}>Save a Score</button>
+        <button onClick={() => props.setGameOver(false)}>Play Again</button>
         {topTenScores}
       </div>
     );
