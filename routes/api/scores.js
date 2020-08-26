@@ -1,6 +1,5 @@
 const express = require("express");
 const router = express.Router();
-const mongoose = require("mongoose");
 const passport = require("passport");
 
 const Score = require("../../models/Score");
@@ -17,12 +16,13 @@ router.post("/",passport.authenticate("jwt", { session: false }), (req, res) => 
   }
 );
 
-//get all Scores - this isn't really necessary but possibly helpful for testing purposes
+//get all Scores - this isn't necessary and represents a security flaw but possibly helpful for testing purposes
 router.get("/", (req, res) => {
   Score.find()
     .then((scores) => res.json(scores))
     .catch((err) => res.status(404).json({ noScoresFound: "No scores found" }));
 });
+
 
 //get top ten scores
 router.get("/topTen", (req, res) => {

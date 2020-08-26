@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
 const User = require("../../models/User");
+const Score = require("../../models/Score");
 const jwt = require("jsonwebtoken");
 const keys = require("../../config/keys");
 const passport = require("passport");
@@ -24,6 +25,16 @@ router.get("/:id", (req, res) => {
     .then((user) => res.json(user))
     .catch((err) => res.status(400).json(err));
 });
+
+// get routes owned by a user
+router.get("/:id/scores", (req, res) => {
+    Score.find({ userId: req.params.userId })
+      .then((scores) => res.json(scores))
+      .catch((err) =>
+        res.status(404).json({ noScoresFound: "No scores found" })
+      );
+});
+
 
 // login
 router.post("/login", (req, res) => {

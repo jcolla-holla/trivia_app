@@ -3,6 +3,8 @@ import { mergeAnswers } from "../../util/general_util";
 import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
 import Button from "react-bootstrap/Button";
+import ReactHtmlParser from "react-html-parser";
+
 
 const QuestionCard = (props) => {
     const [selected, setSelected] = useState()
@@ -85,7 +87,7 @@ const QuestionCard = (props) => {
       <div id="question-card">
         <Card style={{ width: "50rem" }}>
           <Card.Body>
-            <Card.Title>{props.question.question}</Card.Title>
+            <Card.Title>{ReactHtmlParser(props.question.question)}</Card.Title>
             <Card.Text>Difficulty: {props.question.difficulty}</Card.Text>
             <Card.Text>Category: {props.question.category}</Card.Text>
           </Card.Body>

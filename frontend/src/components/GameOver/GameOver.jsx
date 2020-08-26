@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import TopTenScore from '../TopTenScore/TopTenScore_container'
+import UserScores from "../UserScores/UserScores";
 
 const GameOver = (props) => {
   const [isSaveScoreDisabled, setIsSaveScoreDisabled] = useState(false);
@@ -8,6 +9,7 @@ const GameOver = (props) => {
   useEffect(() => {   
     props.getTopTenScores();
     props.fetchQuestions();
+    props.getUserScores(props.userId)
   }, []);
   
   const saveScore = () => {
@@ -59,6 +61,18 @@ const GameOver = (props) => {
     );
   });
 
+  debugger
+  console.log(props.userScores, "userScores from GameOver")
+  // const userScores = props.userScores.map(scoreObj => {
+  //   return (
+  //     <UserScores
+  //       key={scoreObj._id}
+  //       score={scoreObj.score}
+  //       date={scoreObj.date}
+  //     />
+  //   );
+  // })
+
     return (
       <div id="game-over">
         <h1>Game Over!!</h1>
@@ -75,10 +89,12 @@ const GameOver = (props) => {
         >
           Play Again!
         </button>
+        {/* game top ten scores from all users */}
         {topTenScores}
 
-        
-        {/* users top ten scores */}
+        <br></br>
+        {/* current user's top ten scores */}
+        {/* {props.isAuthenticated && userScores} */}
       </div>
     );
 }

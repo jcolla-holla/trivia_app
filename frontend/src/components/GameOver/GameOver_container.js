@@ -4,23 +4,32 @@ import {
   createScore,
   updateScore
 } from "../../actions/score_actions";
+import {getUserScores} from "../../actions/user_actions"
 import { fetchQuestions } from "../../actions/questions_actions"
 import GameOver from "./GameOver.jsx";
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state) => {
+  console.log(state.users, "--state.users from GameOver_container")
+  debugger
+  return {
     isAuthenticated: state.session.isAuthenticated,
     userId: state.session.user.id,
     topTen: state.scores.topTen
       ? state.scores.topTen.sort((a, b) => a.score - b.score)
       : [], //ordered array
-    allScores: state.scores.allScores,
-});
+    userScores:
+      JSON.stringify(state.users) === "{}"
+        ? []
+        : state.users,
+  };
+};
 
 const mapDispatchToProps = (dispatch) => ({
   fetchQuestions: () => dispatch(fetchQuestions()),
   getTopTenScores: () => dispatch(getTopTenScores()),
   createScore: (score) => dispatch(createScore(score)),
   updateScore: (score) => dispatch(updateScore(score)),
+  getUserScores: (userId) => dispatch(getUserScores(userId)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(GameOver);
