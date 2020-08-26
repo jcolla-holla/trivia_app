@@ -40,6 +40,7 @@ const GameOver = (props) => {
 
     
     // if the saved score is in the new top ten, refresh that data for user to see their score in top ten list
+    // this is a very hacky way of doing this, though if this workflow fails it doesn't ruin the user experience or error out
       setTimeout(function () {
         props.getTopTenScores()
       }, 1000)
@@ -75,6 +76,8 @@ const GameOver = (props) => {
           Play Again!
         </button>
         {topTenScores}
+
+        
         {/* users top ten scores */}
       </div>
     );

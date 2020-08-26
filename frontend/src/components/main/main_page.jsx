@@ -64,7 +64,7 @@ const MainPage = (props) => {
         />
       )}
 
-      {gameOver && (
+      {!gameOver && (
         <GameOver
           isDemoUser={isDemoUser}
           startNewRound={startNewRound}

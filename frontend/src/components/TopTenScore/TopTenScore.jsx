@@ -8,11 +8,12 @@ const TopTenScore = (props) => {
 
     return (
       <div id="top-ten-score">
-        User: {props.userHandle}
+        User:{" "}
+        {props.users[props.userId] ? props.users[props.userId].handle : "Loading Name..."}
         <br></br>
         Score: {props.score}
         <br></br>
-        Date: {props.date.slice(0,10)}
+        Date: {props.date.slice(0, 10)}
       </div>
     );
 }
