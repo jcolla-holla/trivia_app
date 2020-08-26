@@ -72,9 +72,9 @@ const MainPage = (props) => {
       )}
 
       {!isDemoUser && !props.isAuthenticated && (
-        <Modal.Dialog id="login-modal">
+        <Modal id="login-modal" show backdrop="static">
           <Modal.Header>
-            <Modal.Title>Let's Get Started!</Modal.Title>
+            <Modal.Title>Let's Play TrustLayer Trivia!</Modal.Title>
           </Modal.Header>
 
           <Modal.Body>
@@ -118,10 +118,12 @@ const MainPage = (props) => {
           </Modal.Body>
           <Modal.Footer>
             <div className="modal-footer-info">
-              <span>As a Guest, you can create an account later to save your score.</span>
+              <span>
+                As a Guest, you can create an account later to save your score.
+              </span>
             </div>
           </Modal.Footer>
-        </Modal.Dialog>
+        </Modal>
       )}
 
       {isDemoUser && gameOver && (
