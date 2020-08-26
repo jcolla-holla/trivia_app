@@ -1,6 +1,7 @@
 import { connect } from "react-redux";
-import { login, clearErrors } from "../../actions/session_actions";
+import { login, signup, clearErrors } from "../../actions/session_actions";
 import { fetchQuestions } from "../../actions/questions_actions";
+import { createScore } from "../../actions/score_actions";
 import MainPage from "./main_page.jsx";
 
 const mapStateToProps = (state) => ({
@@ -9,9 +10,11 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
+  signup: (user) => dispatch(signup(user)),
   login: (user) => dispatch(login(user)),
   clearErrors: () => dispatch(clearErrors()),
-  fetchQuestions: () => dispatch(fetchQuestions())
+  fetchQuestions: () => dispatch(fetchQuestions()),
+  createScore: (score) => dispatch(createScore(score)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(MainPage);

@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react'
 import TopTenScore from '../TopTenScore/TopTenScore_container'
 
 const GameOver = (props) => {
-  const [isTopTenScore, setIsTopTenScore] = useState(false)  
   
   // ComponentDidMount effect - fetch top scores immediately upon mounting
   useEffect(() => {   
@@ -10,11 +9,38 @@ const GameOver = (props) => {
   }, []);
   
   const saveScore = () => {
-    // props.createScore({ userId: props.session.user.id, score: props.score, topTen: false });
+    // determine if top ten score
+    let isTopTenScore = false
+    if(props.topTen.length < 10) {
+      isTopTenScore = true;
+    } else if (props.topTen.length === 10) {
+      let newTopTenIdx;
+      props.topTen.map((scoreObj, idx) => {
+        if (props.score < scoreObj.score) {
+          isTopTenScore = true;
+        }
+      });
+      
+      debugger
+      if (isTopTenScore) {
+        // if yes, update in the DB the previously top score displaced
+        // props.topTen[9]._id
+
+      }
+    }
+
+    let newTopTenIdx 
+    props.topTen.map((scoreObj,idx) => {
+      if(props.score < scoreObj.score) {
+        isTopTenScore = true
+        newTopTenIdx = idx
+      }
+    })
+
     props.createScore({
       userId: props.userId,
       score: props.score,
-      topTen: true,
+      topTen: isTopTenScore,
     });
   }
   
@@ -40,7 +66,7 @@ const GameOver = (props) => {
         <div>Final Score: {props.score}</div>
         {createAccount}
         <button onClick={() => saveScore()}>Save a Score</button>
-        <button onClick={() => props.setGameOver(false)}>Play Again</button>
+        <button onClick={() => props.startNewRound()}>Play Again</button>
         {topTenScores}
       </div>
     );

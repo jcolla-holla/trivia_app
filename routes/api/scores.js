@@ -3,28 +3,21 @@ const router = express.Router();
 const mongoose = require("mongoose");
 const passport = require("passport");
 
-router.get("/test", (req, res) => res.json({ msg: "This is the scores route" }));
-
 const Score = require("../../models/Score");
-// note: no validations for Scores because user won't be inputting any data
+// note: no validations for Scores because user won't be inputting any data, this is NOT good practice from security perspective
 
 // create new Score - protected endpoint
-router.post("/",passport.authenticate("jwt", { session: false }), (req, res) => {
-
-    // req.body.userId may not be quite right
-
-    
+router.post("/",passport.authenticate("jwt", { session: false }), (req, res) => {    
     const newScore = new Score({
       score: req.body.score,
       userId: req.body.userId,
       topTen: req.body.topTen
     });
-
     newScore.save().then((score) => res.json(score));
   }
 );
 
-//get all Scores
+//get all Scores - this isn't really necessary but possibly helpful for testing purposes
 router.get("/", (req, res) => {
   Score.find()
     .then((scores) => res.json(scores))
@@ -36,6 +29,13 @@ router.get("/topTen", (req, res) => {
   Score.find({topTen: true})
     .then((scores) => res.json(scores))
     .catch((err) => res.status(404).json({ noScoresFound: "No scores found" }));
+});
+
+// update score -- used only for updating the topTen key when a new topTen score is saved
+router.put("/:id", (req, res) => {
+  User.findById(req.params.id)
+    .then((user) => res.json(user))
+    .catch((err) => res.status(400).json(err));
 });
 
 module.exports = router;
