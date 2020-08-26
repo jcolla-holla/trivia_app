@@ -14,7 +14,7 @@ const mapStateToProps = (state) => ({
     topTen: state.scores.topTen
       ? state.scores.topTen.sort((a, b) => a.score - b.score)
       : [], //ordered array
-    userScores: state.users.userScores.sort((a, b) => a.score - b.score).split(0,9),
+    userScores: state.users.userScores.sort((a, b) => a.score - b.score).slice(0,9),
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -22,12 +22,14 @@ const Questions = (props) => {
 
     return (
       <div id="questions">
-        {props.questionsSubmitted === 9 && (
-          <Alert variant="warning" dismissable="true">
-            <strong>One question left!</strong> {" "} Submit your last answer to see your
-            final score.
-          </Alert>
-        )}
+        <div id="alert-msg">
+          {props.questionsSubmitted === 9 && (
+            <Alert variant="warning" dismissible>
+              <strong>One question left!</strong> &nbsp; Submit your last answer
+              to see your final score.
+            </Alert>
+          )}
+        </div>
         <div className="score-parent">
           <div className="score">Score: {props.score}</div>
           <div className="questions-submitted">
@@ -42,6 +44,11 @@ const Questions = (props) => {
               {questionList}
             </Carousel>
           )}
+        </div>
+        <div id="nav-helper-msg">
+          <h4>
+            Navigate between questions using the arrows on the left and right.
+          </h4>
         </div>
       </div>
     );

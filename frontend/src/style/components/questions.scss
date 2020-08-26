@@ -1,10 +1,10 @@
 #questions {
-    
     .score-parent {
         display: flex;
         flex-direction: column;
         align-items: flex-end;
         margin-right: 200px;
+        margin-bottom: 30px;
     }
     
     .score {
@@ -18,14 +18,23 @@
         font-size: 18px;
     }
 
-    .alert-warning {
-        display: flex;
-        justify-content: center;
-        font-size: 18px;
-        z-index: 1;
+    #alert-msg{
+        height: 60px;
+
+        .alert-warning {
+            display: flex;
+            justify-content: center;
+            font-size: 18px;
+        }
     }
 
     .carousel-item {
+        display: flex;
+        justify-content: center;
+    }
+
+    #nav-helper-msg {
+        margin-top: 40px;
         display: flex;
         justify-content: center;
     }
