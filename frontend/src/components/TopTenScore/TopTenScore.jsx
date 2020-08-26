@@ -2,16 +2,19 @@ import React, {useEffect} from 'react'
 
 const TopTenScore = (props) => {
 
+    // get the user's name on mounting
     useEffect(() => {
-        // get the user's name
+        props.getUser(props.userId)
     }, []);
 
     return (
       <div id="top-ten-score">
         {/* show the user's name */}
-        Score: {props.scoreObj.score}
+        {/* User: {props.user} */}
         <br></br>
-        Date: {props.scoreObj.date.slice(0,10)}
+        Score: {props.score}
+        <br></br>
+        Date: {props.date.slice(0,10)}
       </div>
     );
 }

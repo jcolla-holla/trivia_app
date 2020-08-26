@@ -8,7 +8,7 @@ const passport = require("passport");
 const validateRegisterInput = require("../../validation/register");
 const validateLoginInput = require("../../validation/login");
 
-
+// get the current user
 router.get("/current", passport.authenticate("jwt", { session: false }), (req, res) => {
     res.json({
       id: req.user.id,
@@ -18,7 +18,14 @@ router.get("/current", passport.authenticate("jwt", { session: false }), (req, r
   }
 );
 
+// get a user
+router.get("/:id", (req, res) => {
+  User.findById(req.params.id)
+    .then((student) => res.json(student))
+    .catch((err) => res.status(400).json(err));
+});
 
+// login
 router.post("/login", (req, res) => {
   const { errors, isValid } = validateLoginInput(req.body);
 
@@ -58,6 +65,7 @@ router.post("/login", (req, res) => {
   });
 });
 
+// create a new user
 router.post("/register", (req, res) => {
   const { errors, isValid } = validateRegisterInput(req.body);
 
