@@ -75,7 +75,7 @@ const QuestionCard = (props) => {
                 onClick={() => setSelected(option)}
                 disabled={submitted}
               ></input>
-              {option}
+              {ReactHtmlParser(option)}
             </ListGroup.Item>
           </label>
         );

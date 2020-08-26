@@ -3,9 +3,14 @@ import {
   RECEIVE_USER_SCORES
 } from "../actions/user_actions";
 
-const UsersReducer = (state = {}, action) => {
+const initialState = {
+  userScores: [],
+};
+
+const UsersReducer = (state = initialState, action) => {
   Object.freeze(state);
   let newState = Object.assign({}, state);
+
   switch (action.type) {
     case RECEIVE_USER:
         if (!newState[action.user.data._id]) {
@@ -13,7 +18,8 @@ const UsersReducer = (state = {}, action) => {
         } 
       return newState;
     case RECEIVE_USER_SCORES:
-      newState[action.scores] = action.scores.data
+      newState.userScores = action.scores.data;
+      return newState;
     default:
       return state;
   }

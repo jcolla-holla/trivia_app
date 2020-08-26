@@ -8,17 +8,16 @@ const ScoreSchema = new Schema(
       required: true,
     },
     userId: {
-        type: Schema.Types.ObjectId,
-        ref: "users",
-        required: true,
+      type: String,
+      required: true,
     },
     topTen: {
-        type: Boolean,
-        required: true
+      type: Boolean,
+      required: true
     },
     date: {
-        type: Date,
-        default: Date.now,
+      type: Date,
+      default: Date.now,
     },
   },
   {

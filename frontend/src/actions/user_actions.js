@@ -36,7 +36,7 @@ export const getUser = (id) => (dispatch) => {
 };
 
 export const getUserScores = (userId) => (dispatch) => {
-  APIUtil.getUser(userId)
+  APIUtil.getUserScores(userId)
     .then((scores) => dispatch(receiveUserScores(scores)))
     .catch((err) => console.log(err));
 };

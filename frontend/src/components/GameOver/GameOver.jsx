@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import TopTenScore from '../TopTenScore/TopTenScore_container'
-import UserScores from "../UserScores/UserScores";
+import UserScoresParent from "../UserScore/UserScoresParent"
 
 const GameOver = (props) => {
   const [isSaveScoreDisabled, setIsSaveScoreDisabled] = useState(false);
@@ -9,7 +9,6 @@ const GameOver = (props) => {
   useEffect(() => {   
     props.getTopTenScores();
     props.fetchQuestions();
-    props.getUserScores(props.userId)
   }, []);
   
   const saveScore = () => {
@@ -42,13 +41,14 @@ const GameOver = (props) => {
 
     
     // if the saved score is in the new top ten, refresh that data for user to see their score in top ten list
-    // this is a very hacky way of doing this, though if this workflow fails it doesn't ruin the user experience or error out
+    // this is a hacky way of doing this, though if this workflow fails it doesn't ruin the user experience or error out
       setTimeout(function () {
         props.getTopTenScores()
+        props.getUserScores(props.userId)
       }, 1000)
   }
   
-  const createAccount = props.isDemoUser ? <p>Thanks for playing.  Save your score by making an account.</p> : <p>Thanks for playing!  Your score has been saved.</p>
+  const createAccount = props.isDemoUser ? <p>Nice job! Make an account to save your score.</p> : <p>Nice job! Click Save Score to save your score.</p>
 
   const topTenScores = props.topTen.map(scoreObj => {
     return (
@@ -61,21 +61,11 @@ const GameOver = (props) => {
     );
   });
 
-  debugger
-  console.log(props.userScores, "userScores from GameOver")
-  // const userScores = props.userScores.map(scoreObj => {
-  //   return (
-  //     <UserScores
-  //       key={scoreObj._id}
-  //       score={scoreObj.score}
-  //       date={scoreObj.date}
-  //     />
-  //   );
-  // })
+
 
     return (
       <div id="game-over">
-        <h1>Game Over!!</h1>
+        <h2>Game Over!</h2>
         <div>Final Score: {props.score}</div>
         {createAccount}
         {props.isAuthenticated && (
@@ -90,11 +80,20 @@ const GameOver = (props) => {
           Play Again!
         </button>
         {/* game top ten scores from all users */}
-        {topTenScores}
+        <div id="top-ten-scores-parent">
+          <h3>Top Ten Scores</h3>
+          {topTenScores}
+        </div>
 
         <br></br>
         {/* current user's top ten scores */}
-        {/* {props.isAuthenticated && userScores} */}
+        {props.isAuthenticated && (
+          <UserScoresParent
+            getUserScores={props.getUserScores}
+            userScores={props.userScores}
+            userId={props.userId}
+          />
+        )}
       </div>
     );
 }

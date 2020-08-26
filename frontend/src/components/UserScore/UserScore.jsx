@@ -1,7 +1,6 @@
 import React from "react";
 
-const UserScores = (props) => {
-
+const UserScore = (props) => {
   return (
     <div id="top-user-score">
       <br></br>
@@ -12,4 +11,4 @@ const UserScores = (props) => {
   );
 };
 
-export default UserScores;
+export default UserScore;

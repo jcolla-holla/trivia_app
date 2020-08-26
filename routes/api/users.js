@@ -26,9 +26,9 @@ router.get("/:id", (req, res) => {
     .catch((err) => res.status(400).json(err));
 });
 
-// get routes owned by a user
+// get scores owned by a user
 router.get("/:id/scores", (req, res) => {
-    Score.find({ userId: req.params.userId })
+    Score.find({ userId: req.params.id })
       .then((scores) => res.json(scores))
       .catch((err) =>
         res.status(404).json({ noScoresFound: "No scores found" })

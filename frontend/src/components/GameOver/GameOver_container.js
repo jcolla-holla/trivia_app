@@ -8,21 +8,14 @@ import {getUserScores} from "../../actions/user_actions"
 import { fetchQuestions } from "../../actions/questions_actions"
 import GameOver from "./GameOver.jsx";
 
-const mapStateToProps = (state) => {
-  console.log(state.users, "--state.users from GameOver_container")
-  debugger
-  return {
+const mapStateToProps = (state) => ({
     isAuthenticated: state.session.isAuthenticated,
     userId: state.session.user.id,
     topTen: state.scores.topTen
       ? state.scores.topTen.sort((a, b) => a.score - b.score)
       : [], //ordered array
-    userScores:
-      JSON.stringify(state.users) === "{}"
-        ? []
-        : state.users,
-  };
-};
+    userScores: state.users.userScores.sort((a, b) => a.score - b.score).split(0,9),
+});
 
 const mapDispatchToProps = (dispatch) => ({
   fetchQuestions: () => dispatch(fetchQuestions()),

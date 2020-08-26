@@ -7,3 +7,4 @@ export const getUser = (userId) => {
 export const getUserScores = (userId) => {
   return axios.get(`/api/users/${userId}/scores`);
 };
+ 
