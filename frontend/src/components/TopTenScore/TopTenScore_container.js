@@ -3,7 +3,7 @@ import TopTenScore from "./TopTenScore.jsx";
 import {getUser} from "../../actions/user_actions"
 
 const mapStateToProps = (state) => {
-  debugger
+  
   return {
     users: state.users ? state.users : "Loading Name...",
   }

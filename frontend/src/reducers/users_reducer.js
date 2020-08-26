@@ -7,7 +7,7 @@ const UsersReducer = (state = {}, action) => {
   let newState = Object.assign({}, state);
   switch (action.type) {
     case RECEIVE_USER:
-        // debugger
+        // 
         if (!newState[action.user.data._id]) {
           newState[action.user.data._id] = action.user.data;
         } 
