@@ -1,7 +1,6 @@
 import React, {useEffect} from 'react'
 
 const TopTenScore = (props) => {
-
     // get the user's name on mounting
     useEffect(() => {
         props.getUser(props.userId)
@@ -9,8 +8,7 @@ const TopTenScore = (props) => {
 
     return (
       <div id="top-ten-score">
-        {/* show the user's name */}
-        {/* User: {props.user} */}
+        User: {props.userHandle}
         <br></br>
         Score: {props.score}
         <br></br>

@@ -3,7 +3,7 @@ import TopTenScore from "./TopTenScore.jsx";
 import {getUser} from "../../actions/user_actions"
 
 const mapStateToProps = (state) => ({
-  user: state.user,
+    userHandle: state.user.handle ? state.user.handle : "Loading Name...",
 });
 
 const mapDispatchToProps = (dispatch) => ({

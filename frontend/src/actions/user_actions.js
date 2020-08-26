@@ -14,16 +14,16 @@ export const clearErrors = () => ({
 });
 
 
-export const receiveScore = (user) => {
+export const receiveUser = (user) => {
   return {
     type: RECEIVE_USER,
     user,
   };
 };
 
-export const getUser = (userId) => (dispatch) => {
-  APIUtil.getUser(userId)
-    .then((user) => dispatch(getUser(user)))
+export const getUser = (id) => (dispatch) => {
+  APIUtil.getUser(id)
+    .then((user) => dispatch(receiveUser(user)))
     .catch((err) => console.log(err));
 };
 

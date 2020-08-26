@@ -21,7 +21,7 @@ router.get("/current", passport.authenticate("jwt", { session: false }), (req, r
 // get a user
 router.get("/:id", (req, res) => {
   User.findById(req.params.id)
-    .then((student) => res.json(student))
+    .then((user) => res.json(user))
     .catch((err) => res.status(400).json(err));
 });
 
