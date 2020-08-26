@@ -74,7 +74,7 @@ const MainPage = (props) => {
       )}
 
       {!isDemoUser && !props.isAuthenticated && (
-        <Modal.Dialog>
+        <Modal.Dialog id="login-modal">
           <Modal.Header>
             <Modal.Title>Let's Get Started!</Modal.Title>
           </Modal.Header>

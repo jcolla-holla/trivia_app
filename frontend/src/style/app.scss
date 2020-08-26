@@ -1,0 +1,23 @@
+// set up for react-bootstrap library -- https://react-bootstrap.github.io/getting-started/introduction/
+@import "~bootstrap/scss/bootstrap";
+@import "./custom.scss";
+
+// Import all other styles here and then import this file in index.js
+@import "./components/login-modal.scss";
+
+html,
+body,
+#app,
+#app > div,
+#root {
+  display: flex;
+  flex-direction: column;
+  min-width: 99vw;
+  min-height: 99vh;
+  // Default text style
+  font-family: 'Roboto',sans-serif;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 20px;
+  margin: 0;
+}
