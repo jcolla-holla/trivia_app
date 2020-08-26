@@ -1,7 +1,12 @@
 
 // all modals
-.modal-title {
-    font-weight: 500
+
+.modal-header {
+    justify-content: center;
+
+    .modal-title {
+        font-weight: 500
+    }
 }
 
 .modal-body {

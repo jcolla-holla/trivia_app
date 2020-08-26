@@ -31,13 +31,14 @@ body,
   position: relative;
     background-image:
     linear-gradient(
-      white, $primary
+      white 4%, $primary 
     );
   min-height: 100vh;
 }
 
 #main-page {
   margin-bottom: 2.5rem;    /* Footer height */
+  margin-top: 10vh;
 }
 
 #footer {
