@@ -103,6 +103,7 @@ const MainPage = (props) => {
                 value="Login"
                 variant="primary"
                 size="lg"
+                disabled={email.length > 0 ? password.length === 0 : true}
               />
             </form>
             <Button
@@ -112,6 +113,7 @@ const MainPage = (props) => {
               value="Continue as Guest"
               variant="secondary"
               size="lg"
+              disabled={email.length > 0 ? password.length === 0 : true}
             />
           </Modal.Body>
 
@@ -159,6 +161,7 @@ const MainPage = (props) => {
                 value="Save Score and Create User"
                 variant="primary"
                 size="lg"
+                disabled={(email.length > 0  && handle.length > 0) ? password.length === 0 : true}
               />
             </form>
           </Modal.Body>

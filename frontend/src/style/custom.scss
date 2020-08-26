@@ -2,8 +2,9 @@
 /* make the customizations */
 $theme-colors: (
     "primary": #107ee4,
-    "secondary": #41c572
-    );
+    "success": #41c572,
+    "dark": #0b2846
+);
     
     
 @import "~bootstrap/scss/bootstrap";
