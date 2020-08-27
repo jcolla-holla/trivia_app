@@ -1,4 +1,4 @@
-# trivia_app
+# trustlayer_trivia
 
 Specifications: [TrustLayer coding challenge](https://codesandbox.io/s/trustlayer-trivia-app-mvg5l)
 
