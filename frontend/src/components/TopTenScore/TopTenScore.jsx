@@ -9,14 +9,28 @@ const TopTenScore = (props) => {
     }, []);
 
     return (
-      <div id="top-ten-score">
-        User:{" "}
-        {props.users[props.userId] ? props.users[props.userId].handle : "Loading Name..."}
-        <br></br>
-        Score: {props.score}
-        <br></br>
-        Date: {props.date.slice(0, 10)}
-      </div>
+      <Card className="top-ten-score-card">
+        <Card.Body>
+          <div className="number">{props.number}</div>
+          <div className="score">
+            <span>Score:</span>
+            <div>{props.score}</div>
+          </div>
+
+          <div className="user-and-date">
+            <div>
+              <strong>User</strong>:{" "}
+              {props.users[props.userId]
+                ? props.users[props.userId].handle
+                : "Loading Name..."}
+            </div>
+
+            <div>
+              <strong>Date</strong>: {" " + props.date.slice(0, 10)}
+            </div>
+          </div>
+        </Card.Body>
+      </Card>
     );
 }
 

@@ -51,9 +51,10 @@ const GameOver = (props) => {
   
   const createAccount = props.isDemoUser ? <p>Nice job! Make an account to save your score.</p> : <p>Nice job! Click Save Score to save your score.</p>
 
-  const topTenScores = props.topTen.map(scoreObj => {
+  const topTenScores = props.topTen.map((scoreObj,idx) => {
     return (
         <TopTenScore
+          number={idx + 1}
           key={scoreObj._id}
           userId={scoreObj.userId}
           score={scoreObj.score}
