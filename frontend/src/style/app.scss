@@ -53,3 +53,13 @@ body,
 .session-errors {
   color: red;
 }
+
+#alert-msg{
+    height: 60px;
+
+    .alert-warning, .alert-success {
+        display: flex;
+        justify-content: center;
+        font-size: 18px;
+    }
+}

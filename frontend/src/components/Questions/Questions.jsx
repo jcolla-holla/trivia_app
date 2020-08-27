@@ -3,6 +3,7 @@ import QuestionCard from "../QuestionCard/QuestionCard";
 import Alert from "react-bootstrap/Alert";
 import Carousel from "react-bootstrap/Carousel";
 import Spinner from "react-bootstrap/Spinner";
+import Button from "react-bootstrap/Button";
 
 const Questions = (props) => {
   const questionList = props.questions.map((question, idx) => {
@@ -23,14 +24,6 @@ const Questions = (props) => {
 
   return (
     <div id="questions">
-      <div id="alert-msg">
-        {props.questionsSubmitted === 9 && (
-          <Alert variant="warning" dismissible>
-            <strong>One question left!</strong> &nbsp; Submit your last answer
-            to see your final score.
-          </Alert>
-        )}
-      </div>
       <div className="score-parent">
         <div className="score">Score: {props.score}</div>
         <div className="questions-submitted">
@@ -42,7 +35,12 @@ const Questions = (props) => {
           <div className="loading-questions-msg">
             <Spinner animation="border" variant="primary" />
             <p>Loading Questions...</p>
-            <p>If this lasts more than 5-10 seconds, refresh the page.</p>
+            <p>If this lasts more than 10 seconds, click to load again.</p>
+            <Button
+              variant="primary"
+              onClick={() => props.fetchQuestions()}
+              size="lg"
+            >Reload</Button>
           </div>
         ) : (
           <Carousel

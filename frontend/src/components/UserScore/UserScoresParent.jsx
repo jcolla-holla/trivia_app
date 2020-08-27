@@ -20,7 +20,7 @@ const UserScoresParent = (props) => {
 
     return (
       <div id="user-scores-parent">
-        <h3>Your Scores</h3>
+        <h3>Your Top Ten Scores</h3>
         {userScores}
       </div>
     );

@@ -41,6 +41,8 @@ const GameOver = (props) => {
       topTen: isTopTenScore,
     });
 
+    // notify user of successful save.  this should really be dependent on if props.createScore was successful
+    props.setIsScoreSaved(true)
     
     // if the saved score is in the new top ten, refresh that data for user to see their score in top ten list
     // this is a hacky way of doing this, though if this workflow fails it doesn't ruin the user experience or error out
@@ -101,7 +103,7 @@ const GameOver = (props) => {
         <div id="all-scores">
           {/* game top ten scores from all users */}
           <div className="top-ten-scores-parent">
-            <h3>Top Ten Scores</h3>
+            <h3>Leaderboard</h3>
             {topTenScores}
           </div>
 

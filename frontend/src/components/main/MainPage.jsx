@@ -4,6 +4,7 @@ import GameOver from "../GameOver/GameOver_container.js"
 import Modal from "react-bootstrap/Modal";
 import NavBar from "../NavBar/NavBar_container"
 import Questions from "../Questions/Questions"
+import Alert from "react-bootstrap/Alert";
 
 const MainPage = (props) => {
   const [email, setEmail] = useState("")
@@ -13,6 +14,7 @@ const MainPage = (props) => {
   const [questionsSubmitted, setQuestionsSubmitted] = useState(0)
   const [gameOver, setGameOver] = useState(false);
   const [isDemoUser, setIsDemoUser] = useState(false)
+  const [isScoreSaved, setIsScoreSaved] = useState(false)
 
   // ComponentDidMount effect - fetch 10 questions immediately upon mounting
   useEffect(() => {
@@ -29,7 +31,6 @@ const MainPage = (props) => {
   const handleCreateAccountSubmit = (e) => {
     e.preventDefault();
     props.signup({ email: email, password: password, handle: handle });
-    // setIsDemoUser(false)
     setEmail("");
     setPassword("");
   }
@@ -49,6 +50,7 @@ const MainPage = (props) => {
 
   const startNewRound = () => {
     setScore(24)
+    setIsScoreSaved(false)
     setGameOver(false)
     setQuestionsSubmitted(0)
   }
@@ -61,7 +63,22 @@ const MainPage = (props) => {
 
   return (
     <div id="main-page">
-      <NavBar setIsDemoUser={setIsDemoUser} />
+      <NavBar setIsDemoUser={setIsDemoUser} gameOver={gameOver} />
+      <div id="alert-msg">
+        {isScoreSaved && (
+          <Alert variant="success">
+            <strong>Score saved successfully!</strong> &nbsp; If it is a
+            personal top ten score it will appear in your top scores.
+          </Alert>
+        )}
+
+        {questionsSubmitted === 9 && (
+          <Alert variant="warning">
+            <strong>One question left!</strong> &nbsp; Submit your last answer
+            to see your final score.
+          </Alert>
+        )}
+      </div>
 
       {(isDemoUser || props.isAuthenticated) && !gameOver && (
         <Questions
@@ -72,6 +89,8 @@ const MainPage = (props) => {
           updateScore={updateScore}
           incrementQuestionsSubmitted={incrementQuestionsSubmitted}
           setGameOver={setGameOver}
+          setIsScoreSaved={setIsScoreSaved}
+          fetchQuestions={props.fetchQuestions}
         />
       )}
 
@@ -82,6 +101,7 @@ const MainPage = (props) => {
           score={score}
           questionsSubmitted={questionsSubmitted}
           setIsDemoUser={setIsDemoUser}
+          setIsScoreSaved={setIsScoreSaved}
         />
       )}
 
@@ -142,7 +162,7 @@ const MainPage = (props) => {
         </Modal>
       )}
 
-      {isDemoUser && !props.isAuthenticated && gameOver && (
+      {isDemoUser && !props.isAuthenticated && gameOver && !isScoreSaved && (
         <Modal id="create-account-modal" show backdrop="static">
           <Modal.Header>
             <Modal.Title>Create Account</Modal.Title>
@@ -192,9 +212,7 @@ const MainPage = (props) => {
           </Modal.Body>
           <Modal.Footer>
             <div className="modal-footer-info">
-              <span>
-                Create an account to then save your score.
-              </span>
+              <span>Create an account to then save your score.</span>
             </div>
           </Modal.Footer>
         </Modal>

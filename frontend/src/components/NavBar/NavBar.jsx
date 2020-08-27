@@ -26,7 +26,9 @@ const NavBar = (props) => {
 
           {/* Log In/Logout Button */}
           {props.isAuthenticated ? (
-            <Button onClick={() => handleLogout()}>Logout</Button>
+            <Button disabled={props.gameOver} onClick={() => handleLogout()}>
+              Logout
+            </Button>
           ) : (
             <Link to="/login">
               <Button>Log In</Button>
