@@ -38,10 +38,11 @@ const Questions = (props) => {
           </div>
         </div>
         <div>
-          {questionList.length > 0 ? (
+          {questionList.length === 0 ? (
             <div className="loading-questions-msg">
               <Spinner animation="border" variant="primary" />
               <p>Loading Questions...</p>
+              <p>If this lasts more than 5-10 seconds, refresh the page.</p>
             </div>
           ) : (
             <Carousel
