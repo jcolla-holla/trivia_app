@@ -1,9 +1,15 @@
 #navbar {
     height: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
     img {
-        // this margin-left is to hack around a white space on the right of the .svg logo file I downloaded from the TrustLayer website.  Don't want to adjust the svg file myself.
         margin-left: 30px;
         max-height: 46px;
+    }
+
+    div {
+        margin-right: 30px;
     }
 }

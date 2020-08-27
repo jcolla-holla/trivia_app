@@ -10,11 +10,11 @@ import GameOver from "./GameOver.jsx";
 
 const mapStateToProps = (state) => ({
     isAuthenticated: state.session.isAuthenticated,
-    userId: state.session.user.id,
+    userId: state.session.user ? state.session.user.id : {},
     topTen: state.scores.topTen
       ? state.scores.topTen.sort((a, b) => a.score - b.score)
       : [], //ordered array
-    userScores: state.users.userScores.sort((a, b) => a.score - b.score).slice(0,9),
+    userScores: state.users.userScores.sort((a, b) => a.score - b.score).slice(0,10),
 });
 
 const mapDispatchToProps = (dispatch) => ({

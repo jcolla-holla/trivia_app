@@ -48,6 +48,11 @@ const MainPage = (props) => {
     setQuestionsSubmitted(0)
   }
 
+  const sessionErrors = (
+      Object.values(props.sessionErrors).map(error => {
+        return <li>{error}</li>
+    })
+  )
 
   return (
     <div id="main-page">
@@ -62,12 +67,13 @@ const MainPage = (props) => {
         />
       )}
 
-      {!gameOver && (
+      {gameOver && (
         <GameOver
           isDemoUser={isDemoUser}
           startNewRound={startNewRound}
           score={score}
           questionsSubmitted={questionsSubmitted}
+          setIsDemoUser={setIsDemoUser}
         />
       )}
 
@@ -115,6 +121,9 @@ const MainPage = (props) => {
                 />
               </div>
             </form>
+
+            <ul className="session-errors">{sessionErrors}</ul>
+            
           </Modal.Body>
           <Modal.Footer>
             <div className="modal-footer-info">

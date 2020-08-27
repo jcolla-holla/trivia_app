@@ -32,7 +32,7 @@ router.get("/topTen", (req, res) => {
 });
 
 // update score -- used only for updating the topTen key when a new topTen score is saved
-router.put("/:id", (req, res) => {
+router.put("/:id", passport.authenticate("jwt", { session: false }), (req, res) => {
   Score.updateOne(
     { _id: req.params.id },
     { topTen: req.body.topTen },
