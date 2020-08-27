@@ -52,7 +52,7 @@ const GameOver = (props) => {
       }, 1000)
   }
   
-  const createAccount = props.isDemoUser ? <p>Nice job! Make an account to save your score.</p> : <p>Nice job! Click Save Score to save your score.</p>
+  const createAccount = !props.isAuthenticated ? <p>Nice job! Make an account to save your score.</p> : <p>Nice job! Click Save Score to save your score.</p>
 
   const topTenScores = props.topTen.map((scoreObj,idx) => {
     return (
@@ -79,10 +79,13 @@ const GameOver = (props) => {
               <div className="final-score">Final Score: {props.score}</div>
               {createAccount}
 
-
               <div id="start-over-btns">
                 {props.isAuthenticated && (
-                  <Button onClick={() => saveScore()} disabled={isSaveScoreDisabled}>
+                  <Button
+                    onClick={() => saveScore()}
+                    disabled={isSaveScoreDisabled}
+                    variant="success"
+                  >
                     Save Score
                   </Button>
                 )}
@@ -97,8 +100,6 @@ const GameOver = (props) => {
             </Card.Body>
           </Card>
         </div>
-
-
 
         <div id="all-scores">
           {/* game top ten scores from all users */}
@@ -116,7 +117,6 @@ const GameOver = (props) => {
             />
           )}
         </div>
-
       </div>
     );
 }
