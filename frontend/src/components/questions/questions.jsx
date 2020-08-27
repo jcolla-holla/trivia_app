@@ -2,20 +2,21 @@ import React from 'react'
 import QuestionCard from '../QuestionCard/QuestionCard'
 import Alert from "react-bootstrap/Alert";
 import Carousel from "react-bootstrap/Carousel";
+import Spinner from "react-bootstrap/Spinner";
 
 const Questions = (props) => {
     const questionList = props.questions.map((question,idx) => {
         return (
           <Carousel.Item key={idx}>
-              <QuestionCard
-                questionNumber={(idx + 1).toString()}
-                question={question}
-                updateScore={props.updateScore}
-                questionsSubmitted={props.questionsSubmitted}
-                incrementQuestionsSubmitted={props.incrementQuestionsSubmitted}
-                setGameOver={props.setGameOver}
-                score={props.score}
-              />
+            <QuestionCard
+              questionNumber={(idx + 1).toString()}
+              question={question}
+              updateScore={props.updateScore}
+              questionsSubmitted={props.questionsSubmitted}
+              incrementQuestionsSubmitted={props.incrementQuestionsSubmitted}
+              setGameOver={props.setGameOver}
+              score={props.score}
+            />
           </Carousel.Item>
         );
     })
@@ -37,10 +38,19 @@ const Questions = (props) => {
           </div>
         </div>
         <div>
-          {questionList.length === 0 ? (
-            <p>Loading Questions...</p>
+          {questionList.length > 0 ? (
+            <div className="loading-questions-msg">
+              <Spinner animation="border" variant="primary" />
+              <p>Loading Questions...</p>
+            </div>
           ) : (
-            <Carousel fade keyboard interval={null} touch indicators={false}>
+            <Carousel
+              fade
+              keyboard={true}
+              interval={null}
+              touch
+              indicators={false}
+            >
               {questionList}
             </Carousel>
           )}

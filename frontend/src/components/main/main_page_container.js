@@ -7,6 +7,7 @@ import MainPage from "./main_page.jsx";
 const mapStateToProps = (state) => ({
   questions: state.questions ? state.questions : [], // array
   isAuthenticated: state.session.isAuthenticated,
+  userEmail: state.session.user.email,
   sessionErrors: state.errors.session
 });
 

@@ -3,6 +3,7 @@ import Button from "react-bootstrap/Button";
 import Questions from "../Questions/Questions"
 import GameOver from "../GameOver/GameOver_container.js"
 import Modal from "react-bootstrap/Modal";
+import NavBar from "../NavBar/NavBar_container"
 
 const MainPage = (props) => {
   const [email, setEmail] = useState("")
@@ -56,8 +57,11 @@ const MainPage = (props) => {
 
   return (
     <div id="main-page">
+      <NavBar setIsDemoUser={setIsDemoUser} userEmail={props.userEmail} />
+
       {(isDemoUser || props.isAuthenticated) && !gameOver && (
         <Questions
+          isAuthenticated={props.isAuthenticated}
           questions={props.questions}
           score={score}
           questionsSubmitted={questionsSubmitted}
@@ -77,7 +81,7 @@ const MainPage = (props) => {
         />
       )}
 
-      {!isDemoUser && !props.isAuthenticated && (
+      {!isDemoUser && !props.isAuthenticated && !gameOver && (
         <Modal id="login-modal" show backdrop="static">
           <Modal.Header>
             <Modal.Title>Let's Play TrustLayer Trivia!</Modal.Title>
@@ -123,7 +127,6 @@ const MainPage = (props) => {
             </form>
 
             <ul className="session-errors">{sessionErrors}</ul>
-            
           </Modal.Body>
           <Modal.Footer>
             <div className="modal-footer-info">
@@ -136,11 +139,10 @@ const MainPage = (props) => {
       )}
 
       {isDemoUser && !props.isAuthenticated && gameOver && (
-        <Modal.Dialog>
+        <Modal id="login-modal" show backdrop="static">
           <Modal.Header>
-            <Modal.Title>Save Your Score</Modal.Title>
+            <Modal.Title>Create Account</Modal.Title>
           </Modal.Header>
-
           <Modal.Body>
             <form onSubmit={handlePlayAgainSubmit}>
               <label>
@@ -170,7 +172,7 @@ const MainPage = (props) => {
               <Button
                 as="input"
                 type="submit"
-                value="Save Score and Create User"
+                value="Create Account"
                 variant="primary"
                 size="lg"
                 disabled={
@@ -180,10 +182,12 @@ const MainPage = (props) => {
                 }
               />
             </form>
+            <ul className="session-errors">{sessionErrors}</ul>
           </Modal.Body>
-
-          <Modal.Footer>Create an account to save your score.</Modal.Footer>
-        </Modal.Dialog>
+          <Modal.Footer>
+            Create an account to then save your score.
+          </Modal.Footer>
+        </Modal>
       )}
     </div>
   );
