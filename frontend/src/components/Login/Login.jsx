@@ -10,6 +10,9 @@ const Login = (props) => {
     const handleStartGameSubmit = (e) => {
         e.preventDefault();
         props.login({ email: email, password: password });
+
+        // roundabout way to close the Login modal
+        window.location.hash = "#/";
     };
 
       return (

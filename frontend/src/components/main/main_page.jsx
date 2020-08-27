@@ -51,7 +51,7 @@ const MainPage = (props) => {
 
   return (
     <div id="main-page">
-      {(isDemoUser || props.isAuthenticated) && gameOver && (
+      {(isDemoUser || props.isAuthenticated) && !gameOver && (
         <Questions
           questions={props.questions}
           score={score}
@@ -62,7 +62,7 @@ const MainPage = (props) => {
         />
       )}
 
-      {!gameOver && (
+      {gameOver && (
         <GameOver
           isDemoUser={isDemoUser}
           startNewRound={startNewRound}
