@@ -1,6 +1,6 @@
-import React from 'react';
-import { render } from '@testing-library/react';
-import MainPage from './components/main/MainPage';
+// import React from 'react';
+// import { render } from '@testing-library/react';
+// import MainPage from './components/main/MainPage';
 
 // ***THIS TEST NO LONGER WORKS AND TESTING IS LOW PRIORITY IN THIS PROJECT
 
