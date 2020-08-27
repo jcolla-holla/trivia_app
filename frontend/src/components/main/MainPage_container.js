@@ -2,7 +2,7 @@ import { connect } from "react-redux";
 import { login, signup } from "../../actions/session_actions";
 import { fetchQuestions } from "../../actions/questions_actions";
 import { createScore } from "../../actions/score_actions";
-import MainPage from "./main_page.jsx";
+import MainPage from "./MainPage.jsx";
 
 const mapStateToProps = (state) => ({
   questions: state.questions ? state.questions : [], // array

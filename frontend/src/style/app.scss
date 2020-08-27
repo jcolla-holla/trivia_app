@@ -3,14 +3,14 @@
 @import "./custom.scss";
 
 // Import all other styles here and then import this file in index.js
-@import "./components/login-modal.scss";
+@import "./components/LoginModal.scss";
 @import "./components/NavBar.scss";
-@import "./components/footer.scss";
-@import "./components/questions.scss";
+@import "./components/Footer.scss";
+@import "./components/Questions.scss";
 @import "./components/QuestionCard.scss";
 @import "./components/GameOver.scss";
 @import "./components/TopTenScore.scss";
-@import "./components/account-modal.scss";
+@import "./components/AccountModal.scss";
 
 html,
 body,

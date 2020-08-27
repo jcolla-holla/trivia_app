@@ -1,6 +1,6 @@
 import React from "react";
 import { Route } from "react-router-dom";
-import MainPage from "./main/main_page_container";
+import MainPage from "./main/MainPage_container";
 import Login from "./Login/Login_container";
 
 const App = () => (
