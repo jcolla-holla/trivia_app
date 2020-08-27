@@ -173,23 +173,29 @@ const MainPage = (props) => {
                   onChange={(e) => setHandle(e.currentTarget.value)}
                 ></input>
               </label>
-              <Button
-                as="input"
-                type="submit"
-                value="Create Account"
-                variant="primary"
-                size="lg"
-                disabled={
-                  email.length > 0 && handle.length > 0
-                    ? password.length === 0
-                    : true
-                }
-              />
+              <div className="buttons-row">
+                <Button
+                  as="input"
+                  type="submit"
+                  value="Create Account"
+                  variant="primary"
+                  size="lg"
+                  disabled={
+                    email.length > 0 && handle.length > 0
+                      ? password.length === 0
+                      : true
+                  }
+                />
+              </div>
             </form>
             <ul className="session-errors">{sessionErrors}</ul>
           </Modal.Body>
           <Modal.Footer>
-            Create an account to then save your score.
+            <div className="modal-footer-info">
+              <span>
+                Create an account to then save your score.
+              </span>
+            </div>
           </Modal.Footer>
         </Modal>
       )}
