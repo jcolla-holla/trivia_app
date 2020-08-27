@@ -21,7 +21,7 @@ const GameOver = (props) => {
     let isTopTenScore = false
     if(props.topTen.length < 10) {
       isTopTenScore = true;
-    } else if (props.topTen.length === 10) {
+    } else if (props.topTen.length >= 10) {
       props.topTen.map((scoreObj, idx) => {
         if (props.score < scoreObj.score) {
           isTopTenScore = true;

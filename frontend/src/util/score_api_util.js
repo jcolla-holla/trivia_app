@@ -5,7 +5,7 @@ export const createScore = (scoreData) => {
 };
 
 export const updateScore = (scoreData) => {
-    return axios.post(`/api/scores/${scoreData.id}`, scoreData);
+    return axios.put(`/api/scores/${scoreData.id}`, scoreData);
 }
 
 export const getScores = () => {

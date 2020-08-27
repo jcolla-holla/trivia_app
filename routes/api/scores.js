@@ -33,11 +33,17 @@ router.get("/topTen", (req, res) => {
 
 // update score -- used only for updating the topTen key when a new topTen score is saved
 router.put("/:id", (req, res) => {
-  let score = Score.findById(req.params.id)
-  score.topTen = req.params.topTen
-  score.save()
-    .then((score) => res.json(score))
-    .catch((err) => res.status(400).json(err));
+  Score.updateOne(
+    { _id: req.params.id },
+    { topTen: req.body.topTen },
+    function (err, result) {
+      if (err) {
+        res.send(err);
+      } else {
+        res.json(result);
+      }
+    }
+  );
 });
 
 module.exports = router;

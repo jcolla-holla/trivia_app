@@ -62,7 +62,7 @@ const MainPage = (props) => {
         />
       )}
 
-      {gameOver && (
+      {!gameOver && (
         <GameOver
           isDemoUser={isDemoUser}
           startNewRound={startNewRound}
@@ -126,7 +126,7 @@ const MainPage = (props) => {
         </Modal>
       )}
 
-      {isDemoUser && gameOver && (
+      {isDemoUser && !props.isAuthenticated && gameOver && (
         <Modal.Dialog>
           <Modal.Header>
             <Modal.Title>Save Your Score</Modal.Title>
