@@ -5,6 +5,8 @@ import NavBar from "./NavBar.jsx";
 
 const mapStateToProps = (state) => ({
   isAuthenticated: state.session.isAuthenticated,
+  userEmail: state.session.user ? state.session.user.email : {},
+  userHandle: state.session.user ? state.session.user.handle : {},
 });
 
 const mapDispatchToProps = (dispatch) => ({

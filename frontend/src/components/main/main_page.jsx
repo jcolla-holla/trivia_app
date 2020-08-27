@@ -26,10 +26,10 @@ const MainPage = (props) => {
     setPassword("");
   }
 
-  const handlePlayAgainSubmit = (e) => {
+  const handleCreateAccountSubmit = (e) => {
     e.preventDefault();
-    setIsDemoUser(false)
     props.signup({ email: email, password: password, handle: handle });
+    // setIsDemoUser(false)
     setEmail("");
     setPassword("");
   }
@@ -54,14 +54,14 @@ const MainPage = (props) => {
   }
 
   const sessionErrors = (
-      Object.values(props.sessionErrors).map(error => {
-        return <li>{error}</li>
+      Object.values(props.sessionErrors).map((error, idx) => {
+        return <li key={idx}>{error}</li>
     })
   )
 
   return (
     <div id="main-page">
-      <NavBar setIsDemoUser={setIsDemoUser} userEmail={props.userEmail} />
+      <NavBar setIsDemoUser={setIsDemoUser} />
 
       {(isDemoUser || props.isAuthenticated) && !gameOver && (
         <Questions
@@ -148,7 +148,7 @@ const MainPage = (props) => {
             <Modal.Title>Create Account</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <form onSubmit={handlePlayAgainSubmit}>
+            <form onSubmit={handleCreateAccountSubmit}>
               <label>
                 Email
                 <input

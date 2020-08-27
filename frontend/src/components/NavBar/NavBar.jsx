@@ -18,10 +18,11 @@ const NavBar = (props) => {
           <span>
             {/* shows user's email or Guest */}
             {props.isAuthenticated
-              ? `Logged in as ${props.userEmail}`
+              ? props.userEmail
+                ? `Logged in as ${props.userEmail}`
+                : `Logged in as ${props.userHandle}`
               : "Logged in as Guest"}
           </span>
-
 
           {/* Log In/Logout Button */}
           {props.isAuthenticated ? (
