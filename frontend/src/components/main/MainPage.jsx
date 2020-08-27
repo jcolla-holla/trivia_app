@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import Button from "react-bootstrap/Button";
-import Questions from "../Questions/Questions"
 import GameOver from "../GameOver/GameOver_container.js"
 import Modal from "react-bootstrap/Modal";
 import NavBar from "../NavBar/NavBar_container"
+import Questions from "../Questions/Questions"
 
 const MainPage = (props) => {
   const [email, setEmail] = useState("")
