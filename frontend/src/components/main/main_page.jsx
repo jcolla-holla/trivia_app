@@ -16,6 +16,7 @@ const MainPage = (props) => {
   // ComponentDidMount effect - fetch 10 questions immediately upon mounting
   useEffect(() => {
     props.fetchQuestions()
+    props.login({email: "jesse.m.colligan@gmail.com", password: "password"})
   }, []);
 
   const handleStartGameSubmit = (e) => {

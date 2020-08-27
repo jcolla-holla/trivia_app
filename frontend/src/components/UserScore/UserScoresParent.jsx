@@ -7,10 +7,11 @@ const UserScoresParent = (props) => {
         props.getUserScores(props.userId)
     }, []);
 
-    const userScores = props.userScores.map((scoreObj) => {
+    const userScores = props.userScores.map((scoreObj, idx) => {
     return (
         <UserScore
         key={scoreObj._id}
+        number={idx + 1}
         score={scoreObj.score}
         date={scoreObj.date.slice(0, 10)}
         />
@@ -18,7 +19,7 @@ const UserScoresParent = (props) => {
     });
 
     return (
-      <div id="user-scores">
+      <div id="user-scores-parent">
         <h3>Your Scores</h3>
         {userScores}
       </div>

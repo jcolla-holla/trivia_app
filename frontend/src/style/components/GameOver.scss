@@ -36,7 +36,10 @@
     display: flex;
     justify-content: space-evenly;
 
-    .top-ten-scores-parent {
+    // to give limited responsiveness:
+    flex-wrap: flex;
+
+    .top-ten-scores-parent, #user-scores-parent {
         border: 1px solid rgba(0, 0, 0, 0.125);
         background-color: white;
         border-radius: 0.3rem;

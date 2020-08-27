@@ -1,6 +1,13 @@
-.top-ten-score-card {
+ .top-ten-score-card {
+     width: 310px;
+ }
+
+ .top-user-score {
+     width: 260px;
+ }
+
+.top-ten-score-card, .top-user-score {
     margin-bottom: 10px;
-    width: 310px;
 
     .card-body {
         display: flex;
@@ -34,7 +41,7 @@
             }
         }
 
-        .user-and-date {
+        .user-and-date, .date {
             display: flex;
             border-radius: 0.3rem;
             color: white;
@@ -42,7 +49,12 @@
             background-color: #ff8c00;
             padding: 6px;
             margin-left: 10px;
+        }
 
+        .date {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
     }
 }

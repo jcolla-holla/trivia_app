@@ -1,13 +1,22 @@
 import React from "react";
+import Card from "react-bootstrap/Card";
+
 
 const UserScore = (props) => {
   return (
-    <div id="top-user-score">
-      <br></br>
-      Score: {props.score}
-      <br></br>
-      Date: {props.date.slice(0, 10)}
-    </div>
+    <Card className="top-user-score">
+      <Card.Body>
+        <div className="number">{props.number}</div>
+        <div className="score">
+          <strong>Score:</strong>
+          <div>{props.score}</div>
+        </div>
+        <div className="date">
+          <strong>Date:</strong>
+          <div>{props.date.slice(0, 10)}</div>
+        </div>
+      </Card.Body>
+    </Card>
   );
 };
 
