@@ -13,6 +13,8 @@ const Login = (props) => {
     const handleStartGameSubmit = (e) => {
         e.preventDefault();
         props.login({ email: email, password: password });
+        setEmail("")
+        setPassword("")
     };
 
     const returnToGame = () => {

@@ -22,12 +22,16 @@ const MainPage = (props) => {
   const handleStartGameSubmit = (e) => {
     e.preventDefault();
     props.login({email: email, password: password});
+    setEmail("");
+    setPassword("");
   }
 
   const handlePlayAgainSubmit = (e) => {
     e.preventDefault();
     setIsDemoUser(false)
     props.signup({ email: email, password: password, handle: handle });
+    setEmail("");
+    setPassword("");
   }
 
   const incrementQuestionsSubmitted = () => {
@@ -139,7 +143,7 @@ const MainPage = (props) => {
       )}
 
       {isDemoUser && !props.isAuthenticated && gameOver && (
-        <Modal id="login-modal" show backdrop="static">
+        <Modal id="create-account-modal" show backdrop="static">
           <Modal.Header>
             <Modal.Title>Create Account</Modal.Title>
           </Modal.Header>
