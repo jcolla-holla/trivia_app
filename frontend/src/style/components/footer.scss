@@ -3,4 +3,13 @@
     display: flex;
     justify-content: center;
     font-size: 10px;
+
+    a {
+        color: white;
+        text-decoration: none;
+
+        &:hover {
+            color: whitesmoke
+        }
+    }
 }

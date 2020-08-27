@@ -1,0 +1,48 @@
+#score-display {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    .score-display-box {
+        border-radius: 0.3rem;
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .final-score {
+            font-size: 30px;
+            margin-top: 20px;
+        }
+    
+        p {
+            margin-top: 14px;
+        }
+
+    }
+
+}
+
+#start-over-btns {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+
+#all-scores {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-evenly;
+
+    .top-ten-scores-parent {
+        border: 1px solid rgba(0, 0, 0, 0.125);
+        background-color: white;
+        border-radius: 0.3rem;
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+    }
+
+}

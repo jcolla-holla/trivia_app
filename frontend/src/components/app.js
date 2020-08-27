@@ -5,10 +5,14 @@ import NavBar from "./NavBar";
 
 const App = () => (
   <div id="app-container">
-    <NavBar/>
+    <NavBar />
     <Route exact path="/" component={MainPageContainer} />
     <footer id="footer">
-      <div> Copyright &copy; 2020 Jesse Colligan</div>
+      <div>
+        <a href="https://jessecolligan.com/">
+          Copyright &copy; 2020 Jesse Colligan
+        </a>
+      </div>
     </footer>
   </div>
 );

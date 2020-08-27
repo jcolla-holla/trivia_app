@@ -1,4 +1,6 @@
 import React, {useEffect} from 'react'
+import Card from "react-bootstrap/Card";
+import ListGroup from "react-bootstrap/ListGroup";
 
 const TopTenScore = (props) => {
     // get the user's name on mounting
