@@ -1,12 +1,14 @@
 import React from "react";
 import { Route } from "react-router-dom";
-import MainPageContainer from "./main/main_page_container";
-import NavBar from "./NavBar";
+import MainPage from "./main/main_page_container";
+import NavBar from "./NavBar/NavBar_container";
+import Login from "./Login/Login_container";
 
 const App = () => (
   <div id="app-container">
     <NavBar />
-    <Route exact path="/" component={MainPageContainer} />
+    <Route path="/" component={MainPage} />
+    <Route path="/login" component={Login} />
     <footer id="footer">
       <div>
         <a href="https://jessecolligan.com/">

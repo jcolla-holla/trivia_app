@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react'
 import TopTenScore from '../TopTenScore/TopTenScore_container'
 import UserScoresParent from "../UserScore/UserScoresParent"
 import Card from "react-bootstrap/Card";
+import Button from "react-bootstrap/Button";
 
 const GameOver = (props) => {
   const [isSaveScoreDisabled, setIsSaveScoreDisabled] = useState(false);
@@ -75,24 +76,26 @@ const GameOver = (props) => {
             <Card.Body className="score-display-box">
               <div className="final-score">Final Score: {props.score}</div>
               {createAccount}
+
+
+              <div id="start-over-btns">
+                {props.isAuthenticated && (
+                  <Button onClick={() => saveScore()} disabled={isSaveScoreDisabled}>
+                    Save Score
+                  </Button>
+                )}
+
+                <Button
+                  onClick={() => props.startNewRound()}
+                  disabled={!props.isAuthenticated}
+                >
+                  Play Again!
+                </Button>
+              </div>
             </Card.Body>
           </Card>
         </div>
 
-      <div id="start-over-btns">
-        {props.isAuthenticated && (
-          <button onClick={() => saveScore()} disabled={isSaveScoreDisabled}>
-            Save Score
-          </button>
-        )}
-
-        <button
-          onClick={() => props.startNewRound()}
-          disabled={!props.isAuthenticated}
-        >
-          Play Again!
-        </button>
-      </div>
 
 
         <div id="all-scores">
