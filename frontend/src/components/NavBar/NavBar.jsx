@@ -14,6 +14,8 @@ const NavBar = (props) => {
       <div id="navbar">
         <img src={logo}></img>
 
+        {/* only render login button if user is on desktop */}
+        {!props.isOnMobile && 
         <div>
           <span>
             {/* shows user's email or Guest */}
@@ -35,6 +37,7 @@ const NavBar = (props) => {
             </Link>
           )}
         </div>
+        }
       </div>
     );
 }
