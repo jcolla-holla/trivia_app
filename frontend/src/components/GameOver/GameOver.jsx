@@ -35,14 +35,24 @@ const GameOver = (props) => {
     }
 
     // create the new score in the database
-    props.createScore({
-      userId: props.userId,
-      score: props.score,
-      topTen: isTopTenScore,
-    });
+    async function createScore () {
+      try {
+        props.createScore({
+          userId: props.userId,
+          score: props.score,
+          topTen: isTopTenScore,
+        });
+    
+        // notify user of successful save.  this should really be dependent on if props.createScore was successful
+        props.setIsScoreSaved(true)
+      } catch (err) {
+        // improvement: have render in better UX way
+        console.log(err)
+        alert("Failed to save score.  Please try again.")
+      }
+    }
 
-    // notify user of successful save.  this should really be dependent on if props.createScore was successful
-    props.setIsScoreSaved(true)
+    createScore();
     
     // if the saved score is in the new top ten, refresh that data for user to see their score in top ten list
     // this is a hacky way of doing this, though if this workflow fails it doesn't ruin the user experience or error out
