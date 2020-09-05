@@ -1,4 +1,4 @@
-Specifications: [TrustLayer coding challenge](https://codesandbox.io/s/trustlayer-trivia-app-mvg5l)
+This was a coding challenge completed within a few days.  The specifications given are here: [here](https://codesandbox.io/s/trustlayer-trivia-app-mvg5l)
 
 # [Play Here! -- Heroku link](https://trustlayer-trivia.herokuapp.com/#/)
 
