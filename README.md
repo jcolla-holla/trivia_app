@@ -2,7 +2,7 @@
 
 ## This was a coding challenge completed within a few days.  
 
-## The prompt and specification I was given was the below:
+### The prompt and specification I was given was the below:
 
 Implement a simple Trivia Game
 
