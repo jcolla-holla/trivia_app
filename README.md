@@ -59,6 +59,7 @@ https://opentdb.com/api.php?amount=10
 - Security improvements (making some API endpoints protected, XSS, SQL injection protections, etc.)
 - Better styling generally (I'm not a designer!)
 - A mobile experience of some kind by using landscape view on phone
+- Some better transition animations between cards (it's a bit wonky currently)
 
 
 
